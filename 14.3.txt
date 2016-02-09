@@ -1,0 +1,19 @@
+14.3 What is the difference between final, finally, and finalize?
+Despite their similar sounding names, final, finally, and finalize serve very different purposes. 
+To speak in very general terms, final is used to control whether a variable, method, or class is "changeable".
+The finally keyword is used in a try/catch block to ensure that a segment of code is always executed.
+The finalize() method is called by a garbage collector once it determines that no more references exist.
+
+final
+The final statement has a different meaning depending on its context.
+-when applied to a variable (primitive): the value of the variable cannot change
+-when applied to a variable (reference): The reference variable cannot point to any other object in a heap
+-when applied to a method: the method cannot be overriden
+-when applied to a class: the class cannot be subclassed
+
+finally
+There is an optional finally block after the try block or after the catch block. Statements in the finally
+block will always be executed (except if JVM exits from the try block). The finally block is used to write the
+clean up code.
+
+fina
