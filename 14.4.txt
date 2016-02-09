@@ -51,4 +51,11 @@ MyClass<Foo> * bar2 = new MyClass<Foo>(35);
 int f1 = foo1->val; //will equal 15
 int f2 = foo2->val; //will equal 15
 int b1 = bar1 -> val; //will equal 35
-int b2 = bar->val; //
+int b2 = bar->val; //will equal 35
+
+In Java, static variables will be shared across instances of MyClass, regardless of the different types 
+of parameters. 
+Because of their architectural differences, Java generics and C++ templates have a number of other differences. 
+These include:
+-C++ templates can use primitive types, like int. Java cannot and must instead use Integer.
+-In Java, you can restrict
