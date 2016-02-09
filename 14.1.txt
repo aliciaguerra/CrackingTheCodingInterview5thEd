@@ -1,0 +1,6 @@
+14.1. In terms of inheritance, what is the effect of keeping a constructor private?
+Declaring a constructor private on Class A means that you can only access the (private) constructor if you could
+also access A's private methods. Who other than A, can access A's private methods and constructor? A's inner classes
+can. Additionally, if A is an inner class of Q, then Q's inner classes can.
+This has direct implications for inheritance, since a subclass calls it's parent's constructor. The class A can be inherited,
+but only by its own and its parent's inner classes.
