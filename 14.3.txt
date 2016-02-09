@@ -16,4 +16,6 @@ There is an optional finally block after the try block or after the catch block.
 block will always be executed (except if JVM exits from the try block). The finally block is used to write the
 clean up code.
 
-fina
+finalize()
+The finalize() method is called by the garbage collector when it determines that no references exist. It is typically
+used to clean up references, such as closing a file.
