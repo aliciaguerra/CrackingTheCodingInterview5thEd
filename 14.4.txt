@@ -1,0 +1,54 @@
+14.4 Explain the difference between templates in C++ and generics in Java.
+
+Many programmers consider the concepts of templates and generics to be equivalent, simply because both
+allow you to do something along the lines of List<String>. But how each language does this, and why, varies 
+significantly.
+
+This implementation of Java generics is rooted in the idea of "type erasure". This technique eliminates the
+parameterized types when source code is translated to the JVM bytecode.
+
+For example, suppose you have the Java code below:
+
+Vector<String> vector = new Vector<String()>
+vector.add(new String("hello"));
+String str = vector.get(0);
+
+During compilation, this code is re-written into:
+
+Vector vector = new Vector();
+vector.add(new String("hello"));
+String str = (String) vector.get(0);
+
+The use of Java generics didn't really change much about our capabilities, it just made things a bit prettier.
+For this reason, Java generics are sometimes called "syntactic sugar".
+
+This is quite different from C++. In C++, templates are occassionally a glorified macro set, with the compiler 
+creating a new copy of the template code for each type. Proof is in the fact that an instance of MyClass<Foo>
+will not share a static variable with MyClass<Bar>. Two instances of MyClass<Foo>, however, will share a static variable.
+
+To illustrate this, consider the code below:
+
+/*** MyClass.h ***/
+template<class T> class MyClass {
+public:
+static int val;
+MyClass(int v) {val = v; }
+};
+
+/**MyClass.cpp**/
+template<typeName T>
+int MyClass<T>::bar;
+
+template class MyClass<Foo>;
+template class MyClass<Bar>;
+
+/**main.cpp**/
+MyClass<Foo> * foo1 = new MyClass<Foo>(10);
+MyClass<Foo> * foo2 = new MyClass<Foo>(15);
+MyClass<Foo> * bar1 = new MyClass<Foo>(20);
+MyClass<Foo> * bar2 = new MyClass<Foo>(35);
+
+int f1 = foo1->val; //will equal 15
+int f2 = foo2->val; //will equal 15
+int b1 = bar1 -> val; //will equal 35
+int b2 = bar->val; //
