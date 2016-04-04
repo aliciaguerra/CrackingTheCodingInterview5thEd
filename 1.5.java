@@ -80,4 +80,52 @@ int countCompression(String str) {
  	return size;
  }
 }
- 
+
+/*If we don't want to (or aren't allowed to) use a StringBuffer, we can still solve this problem efficiently.
+In line 2, we compute the end size of the string. This allows us to create a char array of the correct size,
+so we can implement the code as follows: */ 
+
+String compressAlternate(String str) {
+	/*Check if compression would create a longer string*/
+	int size = countCompression(str);
+	if(size>= str.length()) {
+		return str;
+	}
+	
+	char[] array = new char[size];
+	int index = 0;
+	char last = str.charAt(0);
+	int count = 1;
+	for(int i=1; i<str.length(), i++) {
+		if(str.charAt(i) == last) { //Found repeated characters
+		count++;
+	} else {
+		/*Update the requested character count.*/
+		index = setChar(array, last, index, count);
+		last = str.charAt(i);
+		count = 1;
+	}
+	}
+	
+	/*Update the string with the last set of repeated characters.*/
+	index = setChar(array, last, index, count);
+	//Returns the string representation of character array
+	return String.valueOf(array);
+}
+
+int setChar(char[] array, char c, int index, int count) {
+	array[index] = c;
+	index++;
+	
+	/*Convert the count to a string, then to an array to chars*/
+	char cnt = String.valueOf(count).toCharArray();
+	
+	/*Copy characters from biggest digit to smallest.*/
+	for(char x: cnt) {
+		array[index] = x;
+		index++;
+	}
+	return index;
+}
+
+int countCompression(String str) {/*same as earlier*/}
