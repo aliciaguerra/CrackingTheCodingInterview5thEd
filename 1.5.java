@@ -47,4 +47,14 @@ String compressBetter(String str) {
  if(str.charAt(i) == last) { //Found repeated char
  count++;
  } else { //Update char count, and update last one
+ mystr.append(last);
+ mystr.append(count);
+ last = str.charAt(i);
+ count = 1;
+  }
+ }
+ 
+ /*In lines 15-16 above, characters are inserted when the repeated character chanches. We need to update
+ 
+ */
  
