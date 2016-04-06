@@ -20,3 +20,29 @@ void deleteDups(LinkedListNode n) {
      n=n.next;
       }
      }
+/*The above solution takes O(N) time, where N is the number of elements in the linked list.*/
+
+/* FOLLOW UP
+How would you solve this problem if a temporary buffer is not allowed?*/
+
+/*If we don't have a buffer, we can iterate with two pointers, current which iterates through a linked
+list, and runner which checks all subsequent nodes for duplicates. */
+
+public static void deleteDups(LinkedListNode head) {
+ if(head==null) return;
+
+LinkedList current = head;
+while(current!=null) {
+ /*Remove all future nodes that have the same value*/
+ LinkedListNode runner = current;
+ while(runner.next != null) {
+  if(runner.next.data == current.data) {
+   runner.next = runner.next.next;
+  } else {
+   runner = runner.next;
+   }
+ }
+  }
+  }
+ }
+}
