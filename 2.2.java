@@ -31,4 +31,40 @@ public static int nthtoLast(LinkedListNode head, int k) {
   return 0; }
   int i = nthToLast(head,next,k)+1;
   if(i==k) {
-   Sys
+   System.out.println(head.data);
+  }
+  return i;
+}
+/*Of course, this is only a valid solution if the interviewer says it's valid.*/
+
+/*Approach B: Use C/C++
+A second way to solve this is to use C++ and to pass values by reference. This allows us to return the node
+value, but also update the counter by passing a pointer to it.*/
+
+node* nthToLast(node* head, int k, int& i) {
+ if(head==null) {
+  return NULL;
+ }
+ node * nd = nthToLast(head->next,k,i);
+ 1 = i+1;
+ if(i==k) {
+  return head;
+ }
+ return nd;
+}
+ }
+ }
+}
+
+/* Approach C: Create a Wrapper Class
+We described earlier that the issue was that we couldn't simultaneously return a counter and an index. If we wrap
+the counter value with a simple class (or even a single element array), we can mimic by passing reference.*/
+
+public class IntWrapper {
+ public int value = 0;
+}
+
+LinkedListNode nthToLastR2(LinkedListNode head, int k, IntWrapper i) {
+ 
+}
+}
