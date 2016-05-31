@@ -54,3 +54,36 @@ public LinkedListNode partition(LinkedListNode node, int x) {
     beforeEnd.next=afterStart;
     return beforeStart;
     }
+    
+/*If it bugs you to keep around so many different variables for tracking two linked lists, you're not alone. We can
+make this code a bit shorter. 
+
+If we don't care about making the elements of the list "stable" (which there's no obligation to, since the interviewer
+hasn't specified that), then we can instead rearrange the elements by rearranging the elements by growing the list
+at the head and tail.
+
+In this approach, we can start a "new" list (using the existing nodes). Elements bigger than the pivot element are put at
+the tail and elements smaller are put at the head. Each time we insert an element, we update either the head or the tail.*/
+
+LinkedListNode partititon (LinkedListNode node, int x) {
+     LinkedListNode head = node;
+     LinkedListNode tail = node;
+     
+     while(node != null) {
+          LinkedListNode next = node.next;
+    if(node.data < x) {
+         /*Inset node at the head*/
+         node.next = head;
+         head=node;
+    } else {
+         /*Insert node at the tail*/
+         tail.next = node;
+         tail=node;
+     }
+     node = next;
+    }
+    tail.next=null;
+    //The head has changed, so we need to return it to the user
+    return head;
+    }
+
